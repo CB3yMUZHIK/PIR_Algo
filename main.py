@@ -80,9 +80,10 @@ while t <= 100000:
     elif m[0][1] >= 0:
         number += 1
         print(number)
-        secondname = 'A' + str(number)
-        ws[secondname] = m[0][1]
-        print(m[0][1], grad)
+        secondnameA = 'A' + str(number)
+        secondnameB = 'B' + str(number)
+        ws[secondnameA] = m[0][1]
+        ws[secondnameB] = grad
     t = t + dt
 
 wb.save('test.xlsx')
