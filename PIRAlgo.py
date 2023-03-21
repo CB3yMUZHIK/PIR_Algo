@@ -70,11 +70,6 @@ while t <= 100000:
         break
     elif m[0][1] >= 0:
         print(m[0][1], grad)
-        for i in range(100):
-            if Alpha[i][0] <= ast:
-                break
-            else:
-                print(Alpha[i][0])
     t = t + dt
 
 #for i in range(1,100):
