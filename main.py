@@ -1,7 +1,6 @@
 import openpyxl
-import os.path
-wb = openpyxl.Workbook()
-ws = wb.active
+wb = openpyxl.Workbook() # Создание книги exel
+ws = wb.active  #Выбор активного листа 
 
 def FindStart(a, l, m0):
     for i in range(l):
@@ -47,6 +46,8 @@ Alpha[0][0] = a0
 Alpha[0][1] = a0
 
 # Вычисления
+ws['A1'] = 'Пористость'
+ws['B1'] = 'Давление'
 number = 2 # номер строки в таблице
 ws['A2'] = m0 #Ввод значания в эксель
 while t <= 100000:
@@ -86,4 +87,4 @@ while t <= 100000:
         ws[secondnameB] = grad
     t = t + dt
 
-wb.save('test.xlsx')
+wb.save('test.xlsx') #сохранение файла
