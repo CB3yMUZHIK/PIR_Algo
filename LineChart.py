@@ -51,8 +51,6 @@ Alpha[0][0] = a0
 Alpha[0][1] = a0
 
 # Вычисления
-mass_for_P = [0,5]
-mass_for_D = []
 ws['A1'] = 'Пористость'
 ws['B1'] = 'Давление'
 number = 2 # номер строки в таблице
@@ -91,9 +89,7 @@ while t <= 100000:
         secondnameA = 'A' + str(number)
         secondnameB = 'B' + str(number)
         ws[secondnameA] = m[0][1]
-        mass_for_P.append((m[0][1]))
         ws[secondnameB] = grad
-        mass_for_D.append(grad)
     t = t + dt
 
 
