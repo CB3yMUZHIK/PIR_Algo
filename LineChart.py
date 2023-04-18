@@ -29,12 +29,12 @@ check = 0
 t = 0
 ast = 10 ^ (-7)
 gamma1 = 0.5  # кольматация
-gamma2 = 0.8  # суффозия
+gamma2 = 0.01  # суффозия
 m0 = 0.5
 a0 = 0.3
-G = 50500
+G = 1000
 mst = 0.01
-dPH = 10000
+dPH = 100
 # Формулы первоначальных значений
 grad = (PH0 - Pg) / l
 v = (k / mu) * grad
@@ -53,11 +53,11 @@ Alpha[0][1] = a0
 
 # Вычисления
 ws['A1'] = 'Пористость'
-ws['B1'] = 'Давление'
+ws['B1'] = 'Концентрация частиц примеси'
 number = 2 # номер строки в таблице
 ws['A2'] = m0 #Ввод значения в эксель
 
-while t <= 8640000:
+while t <= 100000:
     PH = PH0 + dPH * t
     grad = (PH - Pg) / l
     grads.append(grad)
@@ -78,6 +78,8 @@ while t <= 8640000:
             if grad > G:
                 m[i][1] += gamma2 * (m0 - m[i][0]) * (grad - G)
             Alpha[i][1] = (-v * (Alpha[i][0] - Alpha[i - 1][0]) / dx) *(dt / m[i][0]) + Alpha[i][0]
+        if Alpha[i][1] <= ast:
+            Alpha[i][1] = ast
     for i in range(0, 100):
         Alpha[i][0] = Alpha[i][1]
         m[i][0] = m[i][1]
