@@ -28,8 +28,8 @@ l = 100
 check = 0
 t = 0
 ast = 10 ^ (-7)
-gamma1 = 0.5  # кольматация
-gamma2 = 0.01  # суффозия
+gamma1 = 0.2  # кольматация
+gamma2 = 0.7  # суффозия
 m0 = 0.5
 a0 = 0.3
 G = 1000
@@ -76,7 +76,7 @@ while t <= 100000:
         else:
             m[i][1] = (-gamma1 * Alpha[i][0] * (m[i][0] - mst)) * dt + m[i][0]
             if grad > G:
-                m[i][1] += gamma2 * (m0 - m[i][0]) * (grad - G)
+                m[i][1] += gamma2 * (m0 - m[i][0]) * (grad)
             Alpha[i][1] = (-v * (Alpha[i][0] - Alpha[i - 1][0]) / dx) *(dt / m[i][0]) + Alpha[i][0]
         if Alpha[i][1] <= ast:
             Alpha[i][1] = ast
