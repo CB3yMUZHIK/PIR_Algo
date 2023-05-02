@@ -53,7 +53,7 @@ Alpha[0][1] = a0
 
 # Вычисления
 ws['A1'] = 'Пористость'
-ws['B1'] = 'Концентрация частиц примеси'
+ws['B1'] = 'Концентрация нагнетательной жидкости'
 number = 2 # номер строки в таблице
 ws['A2'] = m0 #Ввод значения в эксель
 
@@ -97,15 +97,24 @@ wb.save('test.xlsx') # сохранение файла
 # cоздание диаграммы
 sheet = wb['Первый лист']
 # min max столбцов и строк таблицы
-min_column = wb.active.min_column
-max_column = wb.active.max_column
+min_column = 1
+max_column = 1
 min_row = wb.active.min_row
 max_row = wb.active.max_row
 linechart = LineChart()
-linechart.title = 'Надо придумать'
+linechart.title = 'Пористость'
 data = Reference(sheet, min_col = min_column, min_row = min_row, max_col = max_column, max_row = max_row)
 linechart.add_data(data, titles_from_data=True)
 sheet.add_chart(linechart, "K12")
+min_column = 2
+max_column = 2
+min_row = wb.active.min_row
+max_row = wb.active.max_row
+linechart = LineChart()
+linechart.title = 'Концентрация нагнетательной жидкости'
+data = Reference(sheet, min_col = min_column, min_row = min_row, max_col = max_column, max_row = max_row)
+linechart.add_data(data, titles_from_data=True)
+sheet.add_chart(linechart, "K30")
 wb.save('test.xlsx')
 
 
