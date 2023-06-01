@@ -36,7 +36,7 @@ def main(dt, dx, k, mu, PH0, Pg, l, check, t, ast, gamma1, gamma2, m0, a0, G, ms
     a0 = a0
     G = G
     mst = mst
-    dPH = dPH
+    dPH = mu
 
     grad = (PH0 - Pg) / l
     v = (k / mu) * grad
@@ -55,7 +55,7 @@ def main(dt, dx, k, mu, PH0, Pg, l, check, t, ast, gamma1, gamma2, m0, a0, G, ms
 
     # Вычисления
     ws['A1'] = 'Пористость'
-    ws['B1'] = 'Концентрация частиц примеси'
+    ws['B1'] = 'Концентрация нагнетательной жидкости'
     number = 2  # номер строки в таблице
     ws['A2'] = m0  # Ввод значения в эксель
 
@@ -143,7 +143,7 @@ def defolt(): # Функция с заданными параметрами
     a0 = 0.3
     G = 1000
     mst = 0.01
-    dPH = 100
+    dPH = mu
     main(dt, dx, k, mu, PH0, Pg, l, check, t, ast, gamma1, gamma2, m0, a0, G, mst, dPH)
 
 
@@ -199,13 +199,11 @@ btn = Button(window, text="Создать график с предустанов
 btn_second = Button(window, text="Создать график", command=uservalues, font=("Arial", 10))
 # Текстовые поля для задачи переменных
 txt_dt = Entry(window, width=15)
-txt_dx = Entry(window, width=15)
 txt_k = Entry(window, width=15)
 txt_mu = Entry(window, width=15)
 txt_PH0 = Entry(window, width=15)
 txt_Pg = Entry(window, width=15)
 txt_l = Entry(window, width=15)
-txt_check = Entry(window, width=15)
 txt_t = Entry(window, width=15)
 txt_ast = Entry(window, width=15)
 txt_gamma1 = Entry(window, width=15)
@@ -214,38 +212,32 @@ txt_m0 = Entry(window, width=15)
 txt_a0 = Entry(window, width=15)
 txt_G = Entry(window, width=15)
 txt_mst = Entry(window, width=15)
-txt_dPH = Entry(window, width=15)
 # Подписи к полям
-lbl_dt = Label(window, text="dt", font=("Arial", 15))
-lbl_dx = Label(window, text="dx", font=("Arial", 15))
-lbl_k = Label(window, text="k", font=("Arial", 15))
-lbl_mu = Label(window, text="mu", font=("Arial", 15))
-lbl_PH0 = Label(window, text="PH0", font=("Arial", 15))
-lbl_Pg = Label(window, text="Pg", font=("Arial", 15))
-lbl_l = Label(window, text="l", font=("Arial", 15))
-lbl_check = Label(window, text="check", font=("Arial", 15))
-lbl_t = Label(window, text="t", font=("Arial", 15))
-lbl_ast = Label(window, text="ast", font=("Arial", 15))
-lbl_gamma1 = Label(window, text="gamma1", font=("Arial", 15))
-lbl_gamma2 = Label(window, text="gamma2", font=("Arial", 15))
-lbl_m0 = Label(window, text="m0", font=("Arial", 15))
-lbl_a0 = Label(window, text="a0", font=("Arial", 15))
-lbl_G = Label(window, text="G", font=("Arial", 15))
-lbl_mst = Label(window, text="mst", font=("Arial", 15))
-lbl_dPH = Label(window, text="dPH", font=("Arial", 15))
+lbl_dt = Label(window, text="Шаг времени (с)", font=("Arial", 15))
+lbl_k = Label(window, text="Площадь пласта (м^2)", font=("Arial", 15))
+lbl_mu = Label(window, text="Наращивание нагнетательного давления (Па)", font=("Arial", 15))
+lbl_PH0 = Label(window, text="Начальное нагнетательное давление (Па)", font=("Arial", 15))
+lbl_Pg = Label(window, text="Начальное давление пласта (Па)", font=("Arial", 15))
+lbl_l = Label(window, text="Длина пласта (м)", font=("Arial", 15))
+lbl_t = Label(window, text="Время, данное процессу (с)", font=("Arial", 15))
+lbl_ast = Label(window, text="Минимальное значение концентрации жидкости", font=("Arial", 15))
+lbl_gamma1 = Label(window, text="Коэффициент кольматации", font=("Arial", 15))
+lbl_gamma2 = Label(window, text="Коэффициент суффозии", font=("Arial", 15))
+lbl_m0 = Label(window, text="Начальная пористость", font=("Arial", 15))
+lbl_a0 = Label(window, text="Начальная концентрация нагнетательной жидкости", font=("Arial", 15))
+lbl_G = Label(window, text="Предельное значение депрессии", font=("Arial", 15))
+lbl_mst = Label(window, text="Минимальное значение пористости", font=("Arial", 15))
 # Расположение полей в окне
 wrg.grid(column=0,row=20)
 btn.grid(column=0, row=0)
 btn_second.grid(column=1, row=19)
 lbl.grid(column=0, row=1)
 txt_dt.grid(column=1, row=2)
-txt_dx.grid(column=1, row=3)
 txt_k.grid(column=1, row=4)
 txt_mu.grid(column=1, row=5)
 txt_PH0.grid(column=1, row=6)
 txt_Pg.grid(column=1, row=7)
 txt_l.grid(column=1, row=8)
-txt_check.grid(column=1, row=9)
 txt_t.grid(column=1, row=10)
 txt_ast.grid(column=1, row=11)
 txt_gamma1.grid(column=1, row=12)
@@ -256,13 +248,11 @@ txt_G.grid(column=1, row=16)
 txt_mst.grid(column=1, row=17)
 txt_dPH.grid(column=1, row=18)
 lbl_dt.grid(column=0, row=2)
-lbl_dx.grid(column=0, row=3)
 lbl_k.grid(column=0, row=4)
 lbl_mu.grid(column=0, row=5)
 lbl_PH0.grid(column=0, row=6)
 lbl_Pg.grid(column=0, row=7)
 lbl_l.grid(column=0, row=8)
-lbl_check.grid(column=0, row=9)
 lbl_t.grid(column=0, row=10)
 lbl_ast.grid(column=0, row=11)
 lbl_gamma1.grid(column=0, row=12)
