@@ -164,7 +164,7 @@ def uservalues(): # Функция с параметрами пользоват�
     a0 = txt_a0.get()
     G = txt_G.get()
     mst = txt_mst.get()
-    dPH = txt_dPH.get()
+    dPH = mu
     # Проверка на пустые значения
     if(dt == '' or dx == '' or k == '' or mu == '' or PH0 == '' or Pg == '' or l == '' or check == '' or t == '' or ast == '' or gamma1 == '' or gamma2 == '' or m0 == '' or a0 == ''  or G == '' or mst == '' or dPH == ''):
         messagebox.showinfo('Уведомление', 'Вы ввели не все значения')
@@ -185,7 +185,7 @@ def uservalues(): # Функция с параметрами пользоват�
         a0 = float(txt_a0.get())
         G = float(txt_G.get())
         mst = float(txt_mst.get())
-        dPH = float(txt_dPH.get())
+        dPH = float(mu)
         main(dt,dx,k,mu,PH0,Pg,l,check,t,ast,gamma1,gamma2,m0,a0,G,mst,dPH)
 
 
@@ -246,7 +246,6 @@ txt_m0.grid(column=1, row=14)
 txt_a0.grid(column=1, row=15)
 txt_G.grid(column=1, row=16)
 txt_mst.grid(column=1, row=17)
-txt_dPH.grid(column=1, row=18)
 lbl_dt.grid(column=0, row=2)
 lbl_k.grid(column=0, row=4)
 lbl_mu.grid(column=0, row=5)
@@ -261,7 +260,6 @@ lbl_m0.grid(column=0, row=14)
 lbl_a0.grid(column=0, row=15)
 lbl_G.grid(column=0, row=16)
 lbl_mst.grid(column=0, row=17)
-lbl_dPH.grid(column=0, row=18)
 window.mainloop()
 
 
